@@ -24,16 +24,13 @@ environment {
             environment{
                 scannerHome = tool 'sonar-scanner'
             }
-            dir('my-multi-branch_main') {
-                steps{
-                    withSonarQubeEnv('sonar-server') {
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.scanner.metadataFilePath=${scannerHome}/bin/report-task.txt"
-                    }
+            steps{
+                withSonarQubeEnv('sonar-server') {
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.scanner.metadataFilePath=${scannerHome}/bin/report-task.txt"
                 }
             }
-            
         }
-/*        stage('Quality Gate'){
+        /*stage('Quality Gate'){
             //options {
                 // Timeout counter starts BEFORE agent is allocated
             //    timeout(time: 1, unit: 'HOURS')

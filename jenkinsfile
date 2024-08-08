@@ -26,11 +26,14 @@ environment {
             }
             steps{
                 withSonarQubeEnv('sonar-server') {
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.scanner.metadataFilePath=${scannerHome}/bin/report-task.txt"
+                    dir(env.WORKSPACE) {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
+                // -Dsonar.scanner.metadataFilePath=${scannerHome}/bin/report-task.txt
             }
         }
-        /*stage('Quality Gate'){
+      /*  stage('Quality Gate'){
             //options {
                 // Timeout counter starts BEFORE agent is allocated
             //    timeout(time: 1, unit: 'HOURS')
@@ -38,10 +41,12 @@ environment {
             steps{
                 withSonarQubeEnv('sonar-server') {
                     script {
-                        timeout(time: 1, unit: 'HOURS') {
+                        dir(env.WORKSPACE) {
+                            timeout(time: 1, unit: 'HOURS') {
                             def qg = waitForQualityGate()
                             if (qg.status != 'OK') {
                                 error " Pipeline aborted duei to quality gate failure: ${qg.status}"
+                                }
                             }
                         }
                     }

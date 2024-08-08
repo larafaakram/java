@@ -36,9 +36,8 @@ environment {
             //    timeout(time: 1, unit: 'HOURS')
             //}
             steps{
-                script {
-
-                    withSonarQubeEnv('sonar-server') {
+                withSonarQubeEnv('sonar-server') {
+                    script {
                         timeout(time: 1, unit: 'HOURS') {
                             def qg = waitForQualityGate()
                             if (qg.status != 'OK') {

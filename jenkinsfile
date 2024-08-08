@@ -17,7 +17,7 @@ environment {
                 echo "-------unit test started ---------"
                 sh 'mvn surefire-report:report'
                 echo "-------unit test complated ---------"
-                sh 'printenv'
+                //sh 'printenv'
             }
         }
         stage('SonarQube analysis'){

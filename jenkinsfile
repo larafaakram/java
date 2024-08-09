@@ -22,16 +22,17 @@ environment {
                 sh 'printenv > env.txt'
             }
         }
-       /* stage('SonarQube analysis'){
+        stage('SonarQube analysis'){
             environment{
                 scannerHome = tool 'sonar-scanner'
             }
             steps{
-                withSonarQubeEnv('sonar-server') {
+                sh "--------Scan in local env---------"
+                /*withSonarQubeEnv('sonar-server') {
                     dir(env.WORKSPACE) {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
-                }
+                }*/
                 // -Dsonar.scanner.metadataFilePath=${scannerHome}/bin/report-task.txt
             }
         }
@@ -41,7 +42,8 @@ environment {
             //    timeout(time: 1, unit: 'HOURS')
             //}
             steps{
-                withSonarQubeEnv('sonar-server') {
+                sh "--------Scan in local env---------"
+                /*withSonarQubeEnv('sonar-server') {
                     dir(env.WORKSPACE) {
                         script {
                             timeout(time: 1, unit: 'HOURS') {
@@ -52,9 +54,9 @@ environment {
                             }
                         }
                     }
-                }
+                }*/
             }
-        }*/
+        }
         stage('Publish jar'){
             steps {
                 script {
@@ -65,7 +67,7 @@ environment {
                         "files": [
                             {
                                 "pattern": "jarstaging/(*)",
-                                "target": "larafa-libs-release-local/{1}",
+                                "target": "multi_branch_pipe-libs-release/{1}",
                                 "flat": "false",
                                 "props" : "${properties}",
                                 "exclusions": [ "*.sha1", "*.md5"]

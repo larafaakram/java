@@ -19,7 +19,7 @@ environment {
                 echo "-------unit test started ---------"
                 sh 'mvn surefire-report:report'
                 echo "-------unit test complated ---------"
-                sh 'printenv > env.txt'
+                sh 'printenv'
             }
         }
         stage('SonarQube analysis'){
@@ -27,7 +27,7 @@ environment {
                 scannerHome = tool 'sonar-scanner'
             }
             steps{
-                sh "--------Scan in local env---------"
+                echo "--------Scan in local env---------"
                 /*withSonarQubeEnv('sonar-server') {
                     dir(env.WORKSPACE) {
                         sh "${scannerHome}/bin/sonar-scanner"
@@ -42,7 +42,7 @@ environment {
             //    timeout(time: 1, unit: 'HOURS')
             //}
             steps{
-                sh "--------Scan in local env---------"
+                echo "--------Scan in local env---------"
                 /*withSonarQubeEnv('sonar-server') {
                     dir(env.WORKSPACE) {
                         script {

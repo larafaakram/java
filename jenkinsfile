@@ -1,4 +1,6 @@
 def registry = "https://larafaakram.jfrog.io/"
+def imageName = 'larafaakram.jfrog.io/artifactory/valaxy-docker/'
+def version = '2.1.3'
 
 
 pipeline {
@@ -90,12 +92,11 @@ environment {
         stage('Docker Build'){
             steps {
                 script{
-                    def imageName = 'larafaakram.jfrog.io/artifactory/valaxy-docker/'
-                    def version = '2.1.3'
+
                     echo "--------- Docker Build Started ------------"
-                    //app = docker.build("${imageName}:${version}")
+                    app = docker.build(imageName.imageName())
                     echo "docker Build"
-                    app = docker.build(imageName+":${env.BUILD_ID}")
+                    //app = docker.build(imageName+":${env.BUILD_ID}")
                     echo "--------- Docker Build Ends ------------"
                 }
             }

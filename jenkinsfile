@@ -96,7 +96,6 @@ environment {
                     //app = docker.build("${imageName}:${version}")
                     echo "docker Build"
                     app = docker.build("my-image:${env.BUILD_ID}")
-                    echo app
                     echo "--------- Docker Build Ends ------------"
                 }
             }

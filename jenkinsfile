@@ -12,7 +12,7 @@ environment {
         stage("build"){
             steps{
                 echo "-------build started ---------"
-               // sh 'mvn clean deploy -Dmaven.test.skip=true'
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
                 echo "-------build complated ---------"
             }
         }
@@ -20,7 +20,7 @@ environment {
         stage('test'){
             steps{
                 echo "-------unit test started ---------"
-                //sh 'mvn surefire-report:report'
+                sh 'mvn surefire-report:report'
                 echo "-------unit test complated ---------"
                 sh 'printenv'
             }
@@ -67,7 +67,7 @@ environment {
             steps {
                 script {
                     echo '<--------------- Jar Publish Started --------------->'
-                    /*def server = Artifactory.newServer url:registry+"/artifactory" , credentialsId:"artifactory_token"
+                    def server = Artifactory.newServer url:registry+"/artifactory" , credentialsId:"jfrog_token_access"
                     def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                     def uploadSpec = """{
                         "files": [
@@ -82,7 +82,7 @@ environment {
                     }"""
                     def buildInfo = server.upload(uploadSpec)
                     buildInfo.env.collect()
-                    server.publishBuildInfo(buildInfo)*/
+                    server.publishBuildInfo(buildInfo)
                     echo '<--------------- Jar Publish Ended --------------->'
                 }
             }
@@ -103,8 +103,8 @@ environment {
             steps {
                 script{
                     echo "----------- Docker Publish Started------------"
-                    docker.withRegistry(registry, 'artifactory_token'){
-                        app.push()
+                    docker.withRegistry(registry, 'jfrog_token_access'){
+                    app.push()
                     }
                     echo "----------- Docker Publish Ends------------"
                 }

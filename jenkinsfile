@@ -97,7 +97,7 @@ environment {
                     app = docker.build("larafaakram.jfrog.io/larafa/docker-trial/my_image:${env.BUILD_ID}")
                     echo "docker Build"
                     //app = docker.build(imageName+":${env.BUILD_ID}")
-                    echo "--------- Docker Build Ends ------------"
+                    echo "--------- Docker Build Ends -------------"
                 }
             }
         }

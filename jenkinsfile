@@ -94,7 +94,7 @@ environment {
                 script{
 
                     echo "--------- Docker Build Started ------------"
-                    app = docker.build("larafaakram.jfrog.io/artifactory/valaxy-docker:${env.BUILD_ID}")
+                    app = docker.build("larafaakram.jfrog.io/larafa/valaxy:${env.BUILD_ID}")
                     echo "docker Build"
                     //app = docker.build(imageName+":${env.BUILD_ID}")
                     echo "--------- Docker Build Ends ------------"

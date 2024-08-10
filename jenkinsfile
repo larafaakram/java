@@ -93,9 +93,9 @@ environment {
                     def imageName = 'larafaakram.jfrog.io/artifactory/valaxy-docker/'
                     def version = '2.1.3'
                     echo "--------- Docker Build Started ------------"
-                    app = docker.build("${imageName}:${version}")
+                    //app = docker.build("${imageName}:${version}")
                     echo "docker Build"
-                    //app = docker.build("my-image:${env.BUILD_ID}")
+                    app = docker.build("my-image:${env.BUILD_ID}")
                     echo "--------- Docker Build Ends ------------"
                 }
             }

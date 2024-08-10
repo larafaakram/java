@@ -92,8 +92,9 @@ environment {
             steps {
                 script{
                     echo "--------- Docker Build Started ------------"
-                    app = docker.build(imageName+":"+version)
+                    //app = docker.build(imageName+":"+version)
                     echo "docker Build"
+                    app = docker.build("my-image:${env.BUILD_ID}")
                     echo "--------- Docker Build Ends ------------"
                 }
             }
@@ -103,9 +104,9 @@ environment {
             steps {
                 script{
                     echo "----------- Docker Publish Started------------"
-                    docker.withRegistry(registry, 'jfrog_token_access'){
+                    /*docker.withRegistry(registry, 'jfrog_token_access'){
                     app.push()
-                    }
+                    }*/
                     echo "----------- Docker Publish Ends------------"
                 }
             }

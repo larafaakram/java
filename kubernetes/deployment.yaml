@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java_app
+  name: java-app
   namespace: java-app
 spec:
   selector:
     matchLabels:
-      app: java_app
+      app: java-app
   template:
     metadata:
       labels:
-        app: java_app
+        app: java-app
     spec:
       imagePullSecrets:
         - name:  jfrogcred
       containers:
-      - name: java_app
+      - name: java-app
         image: larafaakram.jfrog.io/larafa/docker-trial/my_image:2.1.3
         resources:
           limits:

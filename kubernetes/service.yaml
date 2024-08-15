@@ -1,11 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name:  java_app
+  name:  java-app
   namespace: java-app
 spec:
   selector:
-    app:  java_app
+    app:  java-app
   type: NodePort
   ports:
   - name:  java_app_port

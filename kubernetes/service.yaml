@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  java_app
+  namespace: java_app
+spec:
+  selector:
+    app:  java_app
+  type: NodePort
+  ports:
+  - name:  java_app_port
+    nodePort: 30082
+    port:  80
+    targetPort:  8080

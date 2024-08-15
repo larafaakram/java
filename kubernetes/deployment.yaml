@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java_app
+  namespace: java_app
+spec:
+  selector:
+    matchLabels:
+      app: java_app
+  template:
+    metadata:
+      labels:
+        app: java_app
+    spec:
+      imagePullSecrets:
+        - name:  jfrogcred
+      containers:
+      - name: java_app
+        image: larafaakram.jfrog.io/larafa/docker-trial/my_image:2.1.3
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
+        env:
+        - name: CONSUMER_KEY
+          value: "GHDELKR"
+        - name: CONSUMER_SECRET
+          value: "GHDELKR"
+        - name: ACCESS_TOKEN
+          value: "GHDELKR"
+        - name: ACCESS_TOKEN_SECRET
+          value: "GHDELKR"
+         

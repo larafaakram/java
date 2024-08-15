@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name:  java_app
-  namespace: java_app
+  namespace: java-app
 spec:
   selector:
     app:  java_app

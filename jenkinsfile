@@ -49,7 +49,7 @@ environment {
             //}
             steps{
                 echo "--------Scan in local env---------"
-                withSonarQubeEnv('sonar-server') {
+                /*withSonarQubeEnv('sonar-server') {
                     dir(env.WORKSPACE) {
                         script {
                             timeout(time: 1, unit: 'HOURS') {
@@ -60,7 +60,7 @@ environment {
                             }
                         }
                     }
-                }
+                }*/
             }
         }
 

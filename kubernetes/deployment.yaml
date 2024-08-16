@@ -16,7 +16,7 @@ spec:
         - name:  jfrogcred
       containers:
       - name: java-app
-        image: larafaakram.jfrog.io/larafa/docker-trial/my_image:34
+        image: larafaakram.jfrog.io/larafa/docker-trial/my_image:35
         resources:
           limits:
             memory: "256Mi"

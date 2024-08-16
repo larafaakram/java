@@ -49,7 +49,7 @@ environment {
             //}
             steps{
                 echo "--------Scan in local env---------"
-                /*withSonarQubeEnv('sonar-server') {
+                withSonarQubeEnv('sonar-server') {
                     dir(env.WORKSPACE) {
                         script {
                             timeout(time: 1, unit: 'HOURS') {
@@ -60,7 +60,7 @@ environment {
                             }
                         }
                     }
-                }*/
+                }
             }
         }
 
@@ -68,7 +68,7 @@ environment {
             steps {
                 script {
                     echo '<--------------- Jar Publish Started --------------->'
-                    /*def server = Artifactory.newServer url:registry+"/artifactory" , credentialsId:"jfrog_token_access"
+                    def server = Artifactory.newServer url:registry+"/artifactory" , credentialsId:"jfrog_token_access"
                     def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                     def uploadSpec = """{
                         "files": [
@@ -83,7 +83,7 @@ environment {
                     }"""
                     def buildInfo = server.upload(uploadSpec)
                     buildInfo.env.collect()
-                    server.publishBuildInfo(buildInfo)*/
+                    server.publishBuildInfo(buildInfo)
                     echo '<--------------- Jar Publish Ended --------------->'
                 }
             }
@@ -110,6 +110,15 @@ environment {
                     app.push()
                     }
                     echo "----------- Docker Publish Ends------------"
+                }
+            }
+        }
+
+        stage('Deploy'){
+            steps{
+                script{
+                    echo "----------- Deploy Started------------"
+                    sh './kubernetes/deploy.sh'
                 }
             }
         }

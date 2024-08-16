@@ -11,4 +11,4 @@ spec:
   - name:  java-app-port
     nodePort: 30082
     port:  80
-    targetPort:  8080
+    targetPort:  8000

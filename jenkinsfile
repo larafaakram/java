@@ -68,7 +68,7 @@ environment {
             steps {
                 script {
                     echo '<--------------- Jar Publish Started --------------->'
-                    def server = Artifactory.newServer url:registry+"/artifactory" , credentialsId:"jfrog_token_access"
+                    /*def server = Artifactory.newServer url:registry+"/artifactory" , credentialsId:"jfrog_token_access"
                     def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                     def uploadSpec = """{
                         "files": [
@@ -83,7 +83,7 @@ environment {
                     }"""
                     def buildInfo = server.upload(uploadSpec)
                     buildInfo.env.collect()
-                    server.publishBuildInfo(buildInfo)
+                    server.publishBuildInfo(buildInfo)*/
                     echo '<--------------- Jar Publish Ended --------------->'
                 }
             }
@@ -94,8 +94,8 @@ environment {
                 script{
 
                     echo "--------- Docker Build Started ------------"
-                    app = docker.build("larafaakram.jfrog.io/larafa/docker-trial/my_image:${env.BUILD_ID}")
-                    echo "docker Build"
+                    /*app = docker.build("larafaakram.jfrog.io/larafa/docker-trial/my_image:${env.BUILD_ID}")
+                    echo "docker Build"*/
                     //app = docker.build(imageName+":${env.BUILD_ID}")
                     echo "--------- Docker Build Ends -------------"
                 }
@@ -106,9 +106,9 @@ environment {
             steps {
                 script{
                     echo "----------- Docker Publish Started------------"
-                    docker.withRegistry(registry, 'jfrog_token_access'){
+                    /*docker.withRegistry(registry, 'jfrog_token_access'){
                     app.push()
-                    }
+                    }*/
                     echo "----------- Docker Publish Ends------------"
                 }
             }
@@ -118,7 +118,7 @@ environment {
             steps{
                 script{
                     echo "----------- Deploy Started------------"
-                    sh './kubernetes/deploy.sh'
+                    sh './deploy.sh'
                 }
             }
         }

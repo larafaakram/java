@@ -118,8 +118,9 @@ environment {
             steps{
                 script{
                     echo "----------- Deploy Started------------"
-                    sh 'chmod +x deploy.sh'
-                    sh './deploy.sh'
+                    //sh 'chmod +x deploy.sh'
+                    //sh './deploy.sh'
+                    sh 'helm install app-java app-java-0.1.0.tgz'
                 }
             }
         }

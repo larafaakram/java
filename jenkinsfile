@@ -118,6 +118,7 @@ environment {
             steps{
                 script{
                     echo "----------- Deploy Started------------"
+                    sh 'chmod +x deploy.sh'
                     sh './deploy.sh'
                 }
             }
